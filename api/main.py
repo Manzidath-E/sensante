@@ -3,6 +3,7 @@
 # Lab 3 - Intégration de Modèles IA - ESP/UCAD
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import joblib
 import numpy as np
@@ -29,6 +30,16 @@ app = FastAPI(
     title="SenSante API",
     description="Assistant pré-diagnostic médical pour le Sénégal",
     version="0.2.0"
+)
+
+
+# Autoriser les requêtes depuis le frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # --- Chargement du modèle au démarrage ---
@@ -99,3 +110,4 @@ def model_info():
         "classes": list(model.classes_),
         "nombre_features": model.n_features_in_
     }
+    

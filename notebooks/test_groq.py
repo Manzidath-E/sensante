@@ -55,7 +55,7 @@ Diagnostic du modele : paludisme (probabilite 72%)
 Explique ce resultat au patient."""}
     ],
     max_tokens=200,
-    temperature=0.3
+    temperature=1.0
 )
 
 print("=== Explication SenSante ===")
